@@ -1,0 +1,99 @@
+﻿<!doctype html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css.css" />
+    <title>3D Engine Test</title>
+</head>
+
+<body>
+    <div class="main">
+        <div style="display: flex; flex-direction: column;" class="soft">
+            <canvas height="1000" width="2000" id="canvas"></canvas>
+        </div>
+        <div class="input soft" style="margin: 32px;">
+            <div style="display: flex;">
+                <button id="start" onclick="start();">RUN</button>
+                <button onclick="running = !running;">暂停</button>
+                <button onclick="running = false;update();">步进</button>
+            </div>
+            <div id="1">
+                <div class="grid-area: name">name</div><input type="text" id="1name" class="grid-area: namei" value="A">
+                <div class="grid-area: radius">radius</div><input type="number" id="1radius" class="grid-area: radiusi" value="20">
+                <div class="grid-area: mass">mass</div><input type="number" id="1mass" class="grid-area: massi" value="10">
+                <div class="grid-area: lx">loc X</div><input type="number" id="1lx" class="grid-area: lxi" value="0">
+                <div class="grid-area: ly">loc Y</div><input type="number" id="1ly" class="grid-area: lyi" value="0">
+                <div class="grid-area: lz">loc Z</div><input type="number" id="1lz" class="grid-area: lzi" value="0">
+                <div class="grid-area: vx">speed X</div><input type="number" id="1vx" class="grid-area: vxi" value="0">
+                <div class="grid-area: vy">speed Y</div><input type="number" id="1vy" class="grid-area: vyi" value="0">
+                <div class="grid-area: vz">speed Z</div><input type="number" id="1vz" class="grid-area: vzi" value="0">
+            </div>
+            <div id="2">
+                <div class="grid-area: name">name</div><input type="text" id="2name" class="grid-area: namei" value="B">
+                <div class="grid-area: radius">radius</div><input type="number" id="2radius" class="grid-area: radiusi" value="10">
+                <div class="grid-area: mass">mass</div><input type="number" id="2mass" class="grid-area: massi" value="1">
+                <div class="grid-area: lx">loc X</div><input type="number" id="2lx" class="grid-area: lxi" value="300">
+                <div class="grid-area: ly">loc Y</div><input type="number" id="2ly" class="grid-area: lyi" value="200">
+                <div class="grid-area: lz">loc Z</div><input type="number" id="2lz" class="grid-area: lzi" value="0">
+                <div class="grid-area: vx">speed X</div><input type="number" id="2vx" class="grid-area: vxi" value="1">
+                <div class="grid-area: vy">speed Y</div><input type="number" id="2vy" class="grid-area: vyi" value="0">
+                <div class="grid-area: vz">speed Z</div><input type="number" id="2vz" class="grid-area: vzi" value="-1">
+            </div>
+            <div id="3">
+                <div class="grid-area: name">name</div><input type="text" id="3name" class="grid-area: namei" value="C">
+                <div class="grid-area: radius">radius</div><input type="number" id="3radius" class="grid-area: radiusi" value="10">
+                <div class="grid-area: mass">mass</div><input type="number" id="3mass" class="grid-area: massi" value="2">
+                <div class="grid-area: lx">loc X</div><input type="number" id="3lx" class="grid-area: lxi" value="-300">
+                <div class="grid-area: ly">loc Y</div><input type="number" id="3ly" class="grid-area: lyi" value="200">
+                <div class="grid-area: lz">loc Z</div><input type="number" id="3lz" class="grid-area: lzi" value="100">
+                <div class="grid-area: vx">speed X</div><input type="number" id="3vx" class="grid-area: vxi" value="1">
+                <div class="grid-area: vy">speed Y</div><input type="number" id="3vy" class="grid-area: vyi" value="0">
+                <div class="grid-area: vz">speed Z</div><input type="number" id="3vz" class="grid-area: vzi" value="1">
+            </div>
+            <div id="4">
+                <div class="grid-area: name">name</div><input type="text" id="4name" class="grid-area: namei" value="D">
+                <div class="grid-area: radius">radius</div><input type="number" id="4radius" class="grid-area: radiusi" value="1">
+                <div class="grid-area: mass">mass</div><input type="number" id="4mass" class="grid-area: massi" value="0.1">
+                <div class="grid-area: lx">loc X</div><input type="number" id="4lx" class="grid-area: lxi" value="100">
+                <div class="grid-area: ly">loc Y</div><input type="number" id="4ly" class="grid-area: lyi" value="100">
+                <div class="grid-area: lz">loc Z</div><input type="number" id="4lz" class="grid-area: lzi" value="100">
+                <div class="grid-area: vx">speed X</div><input type="number" id="4vx" class="grid-area: vxi" value="1">
+                <div class="grid-area: vy">speed Y</div><input type="number" id="4vy" class="grid-area: vyi" value="0">
+                <div class="grid-area: vz">speed Z</div><input type="number" id="4vz" class="grid-area: vzi" value="0">
+            </div>
+            <div id="5">
+                <div class="grid-area: name">name</div><input type="text" id="5name" class="grid-area: namei" value="E">
+                <div class="grid-area: radius">radius</div><input type="number" id="5radius" class="grid-area: radiusi" value="1">
+                <div class="grid-area: mass">mass</div><input type="number" id="5mass" class="grid-area: massi" value="0.1">
+                <div class="grid-area: lx">loc X</div><input type="number" id="5lx" class="grid-area: lxi" value="200">
+                <div class="grid-area: ly">loc Y</div><input type="number" id="5ly" class="grid-area: lyi" value="200">
+                <div class="grid-area: lz">loc Z</div><input type="number" id="5lz" class="grid-area: lzi" value="200">
+                <div class="grid-area: vx">speed X</div><input type="number" id="5vx" class="grid-area: vxi" value="3">
+                <div class="grid-area: vy">speed Y</div><input type="number" id="5vy" class="grid-area: vyi" value="0">
+                <div class="grid-area: vz">speed Z</div><input type="number" id="5vz" class="grid-area: vzi" value="0">
+            </div>
+            <div id="6">
+                <div class="grid-area: name">name</div><input type="text" id="6name" class="grid-area: namei" value="F">
+                <div class="grid-area: radius">radius</div><input type="number" id="6radius" class="grid-area: radiusi" value="1">
+                <div class="grid-area: mass">mass</div><input type="number" id="6mass" class="grid-area: massi" value="0.1">
+                <div class="grid-area: lx">loc X</div><input type="number" id="6lx" class="grid-area: lxi" value="300">
+                <div class="grid-area: ly">loc Y</div><input type="number" id="6ly" class="grid-area: lyi" value="300">
+                <div class="grid-area: lz">loc Z</div><input type="number" id="6lz" class="grid-area: lzi" value="300">
+                <div class="grid-area: vx">speed X</div><input type="number" id="6vx" class="grid-area: vxi" value="2">
+                <div class="grid-area: vy">speed Y</div><input type="number" id="6vy" class="grid-area: vyi" value="0">
+                <div class="grid-area: vz">speed Z</div><input type="number" id="6vz" class="grid-area: vzi" value="0">
+            </div>
+        </div>
+    </div>
+    <!-- JavaScript -->
+    <script src="bundle.js"></script>
+</body>
+
+</html>
